@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Bảng điều khiển";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; // Sử dụng Layout Admin
+}
+
+<div class="row mb-2">
+    <div class="col-sm-6">
+        <h1 class="m-0">Tổng quan hệ thống</h1>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>@ViewBag.StudentCount</h3>
+                <p>Học sinh</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <a asp-controller="Students" asp-action="Index" class="small-box-footer">
+                Chi tiết <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>@ViewBag.TeacherCount</h3>
+                <p>Giáo viên</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                Chi tiết <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>@ViewBag.ClassCount</h3>
+                <p>Khối Lớp</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-school"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                Chi tiết <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>@ViewBag.UserCount</h3>
+                <p>Admin</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-cog"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                Chi tiết <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header border-0">
+                <h3 class="card-title">Thông báo nhà trường</h3>
+            </div>
+            <div class="card-body">
+                <p>Chào mừng bạn đến với Hệ thống quản lý trường học (School Management System).</p>
+                <p>Hệ thống đang hoạt động trên nền tảng ASP.NET Core và SQL Server.</p>
+            </div>
+        </div>
+    </div>
+</div>

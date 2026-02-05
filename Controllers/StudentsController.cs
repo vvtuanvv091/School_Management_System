@@ -95,9 +95,23 @@ namespace School_Management_System.Controllers
             {
                 return NotFound();
             }
-            ViewData["StdClassId"] = new SelectList(_context.ClassRooms, "ClassId", "ClassId", student.StdClassId);
-            ViewData["StdGuardianId"] = new SelectList(_context.Guardians, "GrId", "GrId", student.StdGuardianId);
-            ViewData["StdSectionId"] = new SelectList(_context.Sections, "SectionId", "SectionId", student.StdSectionId);
+            // 1. Khối lớp: Chọn hiển thị cột 'ClassDescription' (Ví dụ: 10, 11)
+            // Tham số: (Nguồn dữ liệu, Cột giá trị lấy, Cột tên hiển thị, Giá trị đang chọn)
+            ViewData["StdClassId"] = new SelectList(_context.ClassRooms, "ClassId", "ClassDescription", student.StdClassId);
+
+            // 2. Lớp chi tiết: Chọn hiển thị cột 'SectionName' (Ví dụ: A1, C2)
+            ViewData["StdSectionId"] = new SelectList(_context.Sections, "SectionId", "SectionName", student.StdSectionId);
+
+            // 3. Phụ huynh: Ghép Họ + Tên để hiển thị cho đẹp
+            // Chúng ta tạo một danh sách tạm thời (Select) để ghép chuỗi
+            var listPhuHuynh = _context.Guardians.Select(g => new {
+                GrId = g.GrId,
+                FullName = g.GrLname + " " + g.GrFname + " (SĐT: " + g.GrMobileNo + ")" // Hiện cả tên và SĐT
+            }).ToList();
+
+            ViewData["StdGuardianId"] = new SelectList(listPhuHuynh, "GrId", "FullName", student.StdGuardianId);
+
+            // --- KẾT THÚC SỬA ---
             return View(student);
         }
 

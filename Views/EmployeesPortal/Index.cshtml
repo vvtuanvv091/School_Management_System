@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Trang cá nhân Nhân viên";
+}
+
+<div class="row mb-2">
+    <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Xin chào, @User.Identity?.Name!</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>3</h3>
+                <p>Lớp đang phụ trách</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <a href="#" class="small-box-footer">Xem danh sách <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>15</h3>
+                <p>Tiết dạy trong tuần</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <a href="#" class="small-box-footer">Xem thời khóa biểu <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h5 class="m-0">Lịch làm việc hôm nay</h5>
+    </div>
+    <div class="card-body">
+        <p class="card-text">Hôm nay bạn có 2 tiết dạy ở lớp 10A1 và 11B1. Đừng quên điểm danh học sinh nhé!</p>
+        <a href="#" class="btn btn-primary">Đi tới sổ điểm danh</a>
+    </div>
+</div>

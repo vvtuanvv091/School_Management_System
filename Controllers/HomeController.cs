@@ -1,11 +1,13 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using School_Management_System.Models;
 using School_Management_System.ViewModels; // Chứa DashboardViewModel vừa tạo
+using System.Diagnostics;
 using System.Linq;
 
 namespace School_Management_System.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
 
     {

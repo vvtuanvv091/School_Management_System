@@ -1,0 +1,99 @@
+﻿@model School_Management_System.Models.Student
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdFname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdFname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdLname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdLname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdEmail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdPass)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdPass)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdDob)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdDob)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdTelNo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdTelNo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdMobileNo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdMobileNo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdDoa)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdDoa)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdStatus)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdGender)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdGender)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdClass)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdClass.ClassId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdGuardian)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdGuardian.GrId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StdSection)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StdSection.SectionId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="StdId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

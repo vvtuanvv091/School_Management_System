@@ -1,0 +1,93 @@
+﻿@model School_Management_System.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Bảng điều khiển";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; // Sử dụng Layout Admin
+}
+
+<div class="row">
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>@Model.StudentCount</h3>
+                <p>Tổng Học Sinh</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <a href="/Students" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>@Model.TeacherCount</h3>
+                <p>Tổng Giáo Viên</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <a href="/Employees" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Biểu đồ Phân bổ Học sinh theo Lớp</h3>
+            </div>
+            <div class="card-body">
+                <div class="chart">
+                    <canvas id="studentBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Themes/plugins/chart.js/Chart.min.js"></script>
+
+    <script>
+        $(function () {
+            // 1. Lấy dữ liệu từ ViewModel C# truyền xuống
+            var labels = @Html.Raw(Json.Serialize(Model.ChartLabels));
+            var dataValues = @Html.Raw(Json.Serialize(Model.ChartData));
+
+            // 2. Cấu hình màu sắc và dữ liệu cho biểu đồ
+            var barChartData = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Số lượng học sinh',
+                        backgroundColor: 'rgba(60,141,188,0.9)',
+                        borderColor: 'rgba(60,141,188,0.8)',
+                        data: dataValues
+                    }
+                ]
+            };
+
+            // 3. Tìm thẻ canvas và tiến hành vẽ
+            var barChartCanvas = $('#studentBarChart').get(0).getContext('2d');
+
+            new Chart(barChartCanvas, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    datasetFill: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true // Ép trục Y luôn bắt đầu từ số 0
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
+}

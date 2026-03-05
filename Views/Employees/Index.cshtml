@@ -1,0 +1,104 @@
+﻿@model IEnumerable<School_Management_System.Models.Employee>
+
+@{
+    ViewData["Title"] = "Quản lý Nhân sự";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Scripts {
+    <script src="~/Themes/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Themes/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Themes/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Themes/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+
+    <script>
+        $(function () {
+            $("#employeeTable").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "excel", "pdf", "print"],
+                "language": {
+                    "search": "Tìm kiếm:",
+                    "paginate": { "next": "Sau", "previous": "Trước" },
+                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_ nhân sự",
+                    "emptyTable": "Không có dữ liệu"
+                }
+            }).buttons().container().appendTo('#employeeTable_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+}
+
+<link rel="stylesheet" href="~/Themes/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Themes/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Danh sách Giáo viên & Nhân viên</h3>
+        <div class="card-tools">
+            <a asp-action="Create" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Thêm nhân sự mới
+            </a>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <table id="employeeTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Mã NV</th>
+                    <th>Họ và Tên</th>
+                    <th>Chức vụ</th>
+                    <th>Ngày vào làm</th>
+                    <th>Trạng thái</th>
+                    <th style="width: 100px;">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.EId</td>
+                        <td>
+                            <strong>@item.ELname @item.EFname</strong><br />
+                            <small class="text-muted"><i class="fas fa-envelope"></i> @item.EEmail</small><br />
+                            <small class="text-muted"><i class="fas fa-phone"></i> @item.EMobileNo</small>
+                        </td>
+                        <td>
+                            @if (item.ERole != null)
+                            {
+                                @if (item.ERole.RoleName == "Giáo viên")
+                                {
+                                    <span class="badge badge-success">Giáo viên</span>
+                                }
+                                else if (item.ERole.RoleName == "Kế toán")
+                                {
+                                    <span class="badge badge-warning">Kế toán</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-info">@item.ERole.RoleName</span>
+                                }
+                            }
+                        </td>
+                        <td>@item.EDoj.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @if (item.EStatus == "Đang làm việc")
+                            {
+                                <span class="badge badge-primary">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-secondary">@item.EStatus</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <a asp-action="Edit" asp-route-id="@item.EId" class="btn btn-info btn-sm" title="Sửa"><i class="fas fa-pencil-alt"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.EId" class="btn btn-danger btn-sm" title="Xóa"><i class="fas fa-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

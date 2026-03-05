@@ -1,0 +1,120 @@
+﻿@model School_Management_System.Models.Student
+
+@{
+    ViewData["Title"] = "Thêm mới Học sinh";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Thông tin hồ sơ</h3>
+                </div>
+
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Họ đệm</label>
+                                <input asp-for="StdFname" class="form-control" placeholder="Ví dụ: Nguyễn Văn" />
+                                <span asp-validation-for="StdFname" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tên</label>
+                                <input asp-for="StdLname" class="form-control" placeholder="Ví dụ: An" />
+                                <span asp-validation-for="StdLname" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input asp-for="StdEmail" class="form-control" type="email" />
+                                <span asp-validation-for="StdEmail" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Mật khẩu</label>
+                                <input asp-for="StdPass" class="form-control" type="password" value="123456" />
+                                <span asp-validation-for="StdPass" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Giới tính</label>
+                                <select asp-for="StdGender" class="form-control">
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Ngày sinh</label>
+                                <input asp-for="StdDob" class="form-control" type="date" />
+                                <span asp-validation-for="StdDob" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Số điện thoại</label>
+                                <input asp-for="StdMobileNo" class="form-control" />
+                                <span asp-validation-for="StdMobileNo" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Ngày nhập học</label>
+                                <input asp-for="StdDoa" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <h5 class="text-info"><i class="fas fa-school"></i> Thông tin học tập</h5>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Khối Lớp</label>
+                                <select asp-for="StdClassId" class="form-control" asp-items="ViewBag.StdClassId"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Lớp Chi tiết (Section)</label>
+                                <select asp-for="StdSectionId" class="form-control" asp-items="ViewBag.StdSectionId"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Phụ huynh (ID)</label>
+                                <select asp-for="StdGuardianId" class="form-control" asp-items="ViewBag.StdGuardianId"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" asp-for="StdStatus" value="Đang học" />
+
+                </div>
+
+                <div class="card-footer text-right">
+                    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+                    <button type="submit" class="btn btn-primary">Lưu thông tin</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
